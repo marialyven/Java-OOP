@@ -8,14 +8,15 @@ public class Main {
 		triangleOne.setSideB(6);
 		triangleOne.setSideC(10);
 		
+		System.out.println(triangleOne);
 		triangleOne.area();
-		System.out.println();
 		
 		Triangle triangleTwo = new Triangle();
 		triangleTwo.setSideA(10);
 		triangleTwo.setSideB(13);
 		triangleTwo.setSideC(17);
-		
+			
+		System.out.println(triangleTwo);	
 		triangleTwo.area();
 	}	
 
