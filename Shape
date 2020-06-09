@@ -48,7 +48,7 @@ public class Point {
 }
 package com.gmail.marialyven12;
 
-public abstract class Triangle extends Shape {
+public class Triangle extends Shape {
 	private Point pointA = new Point();
 	private Point pointB = new Point();
 	private Point pointC = new Point();
@@ -105,7 +105,7 @@ public abstract class Triangle extends Shape {
 }
 package com.gmail.marialyven12;
 
-public abstract class Circle extends Shape{
+public class Circle extends Shape{
 	private Point a = new Point();
 	private Point b = new Point();
 	
@@ -151,7 +151,7 @@ public abstract class Circle extends Shape{
 }
 package com.gmail.marialyven12;
 
-public abstract class Square extends Shape{
+public class Square extends Shape{
 	private Point a = new Point();
 	private Point b = new Point();
 	private Point c = new Point();
@@ -208,7 +208,7 @@ package com.gmail.marialyven12;
 
 import java.util.Arrays;
 
-public abstract class Board extends Shape{
+public class Board {
 	private Shape [] fig = new Shape [4];
 
 	public Board(Shape[] fig) {
@@ -255,6 +255,8 @@ public abstract class Board extends Shape{
 
 package com.gmail.marialyven12;
 
+package com.gmail.marialyven12;
+
 public class Main {
 	public static void main(String[] args) {
 		Point pointA = new Point(6, 7);
@@ -265,5 +267,23 @@ public class Main {
 	 Triangle triangle = new Triangle (pointA, pointB, pointC);
 	 Square square = new Square(pointA, pointB, pointC, pointD);
 	 Circle circle = new Circle(pointA, pointB);
+	 
+	 System.out.println("Area of the triangle is " + triangle.getArea());
+	 System.out.println("Perimeter of the triangle is " + triangle.getPerimeter());
+	 System.out.println();
+	 
+	 System.out.println("Area of the square is " + square.getArea());
+	 System.out.println("Perimeter of the square is " + square.getPerimeter());
+	 System.out.println();
+	 
+	 System.out.println("Area of the circle is " + circle.getArea());
+	 System.out.println("Perimeter of the circle is " + circle.getPerimeter());
+	 
+	 Board b = new Board();
+	 b.insert(0, triangle);
+	 b.insert(1, square);
+	 b.insert(2, circle);
+	 b.delete(1);
 
 	}
+} 
