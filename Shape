@@ -1,0 +1,269 @@
+package com.gmail.marialyven12;
+
+public abstract class Shape {
+	abstract double getPerimeter();
+	abstract double getArea();
+
+}
+package com.gmail.marialyven12;
+
+public class Point {
+	double x;
+	double y;
+		
+	public Point(double x, double y) {
+		super();
+		this.x = x;
+		this.y = y;
+	}
+
+	public Point() {
+		super();
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + "]";
+	}
+	public static double length(Point a, Point b) {
+		return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+	}
+	
+}
+package com.gmail.marialyven12;
+
+public abstract class Triangle extends Shape {
+	private Point pointA = new Point();
+	private Point pointB = new Point();
+	private Point pointC = new Point();
+	
+	public Triangle(Point pointA, Point pointB, Point pointC) {
+		super();
+		this.pointA = pointA;
+		this.pointB = pointB;
+		this.pointC = pointC;
+	}
+
+	public Triangle() {
+		super();
+	}
+
+	public Point getPointA() {
+		return pointA;
+	}
+
+	public void setPointA(Point pointA) {
+		this.pointA = pointA;
+	}
+
+	public Point getPointB() {
+		return pointB;
+	}
+
+	public void setPointB(Point pointB) {
+		this.pointB = pointB;
+	}
+
+	public Point getPointC() {
+		return pointC;
+	}
+
+	public void setPointC(Point pointC) {
+		this.pointC = pointC;
+	}
+
+	@Override
+	public String toString() {
+		return "Triangle [pointA=" + pointA + ", pointB=" + pointB + ", pointC=" + pointC + "]";
+	}
+	@Override
+	public double getPerimeter() {
+		return Point.length(pointA,pointB) + Point.length(pointA,pointC) + Point.length(pointB,pointC);
+			
+	}
+	@Override
+	public double getArea() {
+	double halfArea = Point.length(pointA,pointB) + Point.length(pointA,pointC) + Point.length(pointB,pointC) / 2;
+	return Math.sqrt(halfArea * (halfArea - Point.length(pointA, pointB)) * (halfArea - Point.length(pointB, pointC)) * (halfArea - Point.length(pointC, pointA)));
+	}
+}
+package com.gmail.marialyven12;
+
+public abstract class Circle extends Shape{
+	private Point a = new Point();
+	private Point b = new Point();
+	
+	public Circle(Point a, Point b) {
+		super();
+		this.a = a;
+		this.b = b;
+	}
+
+	public Circle() {
+		super();
+	}
+
+	public Point getA() {
+		return a;
+	}
+
+	public void setA(Point a) {
+		this.a = a;
+	}
+
+	public Point getB() {
+		return b;
+	}
+
+	public void setB(Point b) {
+		this.b = b;
+	}
+
+	@Override
+	public String toString() {
+		return "Circle [a=" + a + ", b=" + b + "]";
+	}
+	@Override 
+	public double getPerimeter() {
+		return 2 * Math.PI * Point.length(a, b);
+	}
+	@Override
+	public double getArea() {
+		return Math.PI * (Point.length(a, b) * Point.length(a, b));
+	}
+
+}
+package com.gmail.marialyven12;
+
+public abstract class Square extends Shape{
+	private Point a = new Point();
+	private Point b = new Point();
+	private Point c = new Point();
+	private Point d = new Point();
+	
+	public Square(Point a, Point b, Point c, Point d) {
+		super();
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+	}
+	public Square() {
+		super();
+	}
+	public Point getA() {
+		return a;
+	}
+	public void setA(Point a) {
+		this.a = a;
+	}
+	public Point getB() {
+		return b;
+	}
+	public void setB(Point b) {
+		this.b = b;
+	}
+	public Point getC() {
+		return c;
+	}
+	public void setC(Point c) {
+		this.c = c;
+	}
+	public Point getD() {
+		return d;
+	}
+	public void setD(Point d) {
+		this.d = d;
+	}
+	@Override
+	public String toString() {
+		return "Square [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + "]";
+	}
+	@Override
+	public double getPerimeter() {
+		return Point.length(a, b) + Point.length(b,c) + Point.length(c, d) + Point.length(d, a);		
+	}
+	@Override
+	public double getArea() {
+		return Point.length(a, b) * Point.length(b,c);
+	}
+}
+package com.gmail.marialyven12;
+
+import java.util.Arrays;
+
+public abstract class Board extends Shape{
+	private Shape [] fig = new Shape [4];
+
+	public Board(Shape[] fig) {
+		super();
+		this.fig = fig;
+	}
+
+	public Board() {
+		super();
+	}
+
+	public Shape[] getFig() {
+		return fig;
+	}
+
+	public void setFig(Shape[] fig) {
+		this.fig = fig;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [fig=" + Arrays.toString(fig) + "]";
+	}
+	
+	public void insert(int i, Shape fig) {
+			if (this.fig[i] == null) {
+				this.fig[i] = fig;
+			}
+	} 
+	public void delete (int i)  {
+			this.fig = null;
+			
+	}
+	public double getArea() {
+		double area = 0;
+		for (int i = 0; i < fig.length; i++) {
+			if(this.fig != null) {
+				area = area + this.fig[i].getArea();
+			}
+		}
+		return area;
+	}
+}
+
+package com.gmail.marialyven12;
+
+public class Main {
+	public static void main(String[] args) {
+		Point pointA = new Point(6, 7);
+		Point pointB = new Point(5, 0);
+		Point pointC = new Point(0,8);
+		Point pointD = new Point(0,11);
+		
+	 Triangle triangle = new Triangle (pointA, pointB, pointC);
+	 Square square = new Square(pointA, pointB, pointC, pointD);
+	 Circle circle = new Circle(pointA, pointB);
+
+	}
