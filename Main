@@ -1,0 +1,31 @@
+package com.gmail.marialyven12;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+	Student studentOne = new Student("Sasha", "Ivanova","White", "female", 20, 2);
+	Student studentTwo = new Student("Alex", "Williams", "White", "male", 18, 4);
+	Student studentThree = new Student("Max", "Li", "Asian", "male", 19, 5);
+	Student studentFour = new Student("Hannah", "Smith", "Black", "female", 21, 5);
+	Student studentFive = new Student("Samuel", "Brown", "Black", "male", 23, 5);
+	
+	Group biology = new Group(5);
+	
+	try {
+		biology.addStudent(studentOne);
+		biology.addStudent(studentTwo);
+		biology.addStudent(studentThree);
+		biology.deleteStudent(studentOne);
+		biology.addStudent(studentFive);
+		biology.deleteStudent(studentFive);
+		biology.sortStudent();
+	} catch (MyException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+		System.out.println(biology);
+	}
+
+}
