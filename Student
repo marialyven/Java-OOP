@@ -1,0 +1,28 @@
+package com.gmail.marialyven12;
+
+public class Student extends Human {
+	private int group;
+
+	public Student(String name, String lastName, String race, String gender, int age, int group) {
+		super(name, lastName, race, gender, age);
+		this.group = group;
+	}
+
+	public Student() {
+		super();
+
+	}
+
+	public int getGroup() {
+		return group;
+	}
+
+	public void setGroup(int group) {
+		this.group = group;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [group=" + group + "]";
+	}
+}
