@@ -1,0 +1,72 @@
+package com.gmail.marialyven12;
+
+import java.util.Arrays;
+
+public class Group {
+		private Student[] students = new Student[10];
+		private int groupNum;
+		
+
+		public Group(int groupNum) {
+			super();
+
+			this.groupNum = groupNum;
+		}
+
+		public Group() {
+			super();
+		}	
+
+		public int getGroupNum() {
+			return groupNum;
+		}
+
+		public void setGroupNum(int groupNum) {
+			this.groupNum = groupNum;
+		}
+
+		public void addStudent(Student student) throws MyException {
+			for (int i = 0; i < students.length; i++) {
+				if (students[i] == null) {
+					students[i] = student;
+					return ;
+				}
+			}
+			throw new MyException();
+		}
+
+		public void deleteStudent(Student student) {
+			for (int i = 0; i < students.length; i++) {
+				if (students[i] != null && students[i] == student) {
+					students[i] = null;
+			}
+
+			}
+		
+		}
+
+		public void sortStudent() {
+			for (int i = 0; i < students.length - 1; i++) {
+
+				for (int j = i++; j < students.length; j++) {
+					if (students[i] == null || students[j] == null) {
+						continue;
+					}
+						if (students[i].getName().compareTo(students[j].getName()) > 0) {
+							Student t= students[i];
+							students[i] = students[j];
+							students[j] = t;
+
+						
+					}
+	
+				}
+			}
+}
+
+		@Override
+		public String toString() {
+			return "Group [students=" + Arrays.toString(students) + ", groupNum=" + groupNum + "]";
+		}
+		
+}
