@@ -1,0 +1,8 @@
+package com.gmail.marialyven12;
+
+public class MyException extends Exception{
+	@Override
+	public String getMessage () {
+		return "This group is full. You cannot add another student.";
+	}
+}
