@@ -1,72 +1,139 @@
 package com.gmail.marialyven12;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class Group {
-		private Student[] students = new Student[10];
-		private int groupNum;
+public class Group implements Millitary {
+	private Student[] students = new Student[10];
+	private int groupNum;
 		
 
-		public Group(int groupNum) {
-			super();
+	public Group(int groupNum) {
+		super();
 
-			this.groupNum = groupNum;
+		this.groupNum = groupNum;
 		}
 
-		public Group() {
-			super();
+	public Group() {
+		super();
 		}	
 
-		public int getGroupNum() {
-			return groupNum;
+	public int getGroupNum() {
+		return groupNum;
 		}
 
-		public void setGroupNum(int groupNum) {
-			this.groupNum = groupNum;
+	public void setGroupNum(int groupNum) {
+		this.groupNum = groupNum;
 		}
 
-		public void addStudent(Student student) throws MyException {
-			for (int i = 0; i < students.length; i++) {
-				if (students[i] == null) {
-					students[i] = student;
+	public void addStudent(Student student) throws MyException {
+		for (int i = 0; i < students.length; i++) {
+			if (students[i] == null) {
+				students[i] = student;
 					return ;
 				}
 			}
-			throw new MyException();
+		throw new MyException();
 		}
 
-		public void deleteStudent(Student student) {
-			for (int i = 0; i < students.length; i++) {
-				if (students[i] != null && students[i] == student) {
-					students[i] = null;
+	public void deleteStudent(Student student) {
+		for (int i = 0; i < students.length; i++) {
+			if (students[i] != null && students[i] == student) {
+				students[i] = null;
 			}
 
 			}
 		
 		}
 
-		public void sortStudent() {
-			for (int i = 0; i < students.length - 1; i++) {
+	public void sortStudent() {
+		for (int i = 0; i < students.length - 1; i++) {
 
-				for (int j = i++; j < students.length; j++) {
-					if (students[i] == null || students[j] == null) {
-						continue;
+			for (int j = i++; j < students.length; j++) {
+				if (students[i] == null || students[j] == null) {
+					continue;
 					}
-						if (students[i].getName().compareTo(students[j].getName()) > 0) {
-							Student t= students[i];
-							students[i] = students[j];
-							students[j] = t;
+					if (students[i].getName().compareTo(students[j].getName()) > 0) {
+						Student t= students[i];
+						students[i] = students[j];
+						students[j] = t;
+				}
 
 						
 					}
 	
 				}
 			}
-}
+
 
 		@Override
 		public String toString() {
 			return "Group [students=" + Arrays.toString(students) + ", groupNum=" + groupNum + "]";
 		}
 		
+		public void addStudentFromConsol(String name, String lastName, String race, String gender, int age, int group) {
+			try {
+				Scanner sc = new Scanner(System.in);
+				System.out.println("Enter the first name of the student");
+				name = sc.nextLine();
+				System.out.println("Enter the last name of the student");
+				lastName = sc.nextLine();
+				System.out.println("Enter the race of the student");
+				race = sc.nextLine();
+				System.out.println("Enter the gender of the student");
+				gender = sc.nextLine();
+				System.out.println("Enter the age of the student");
+				age = sc.nextInt();
+				System.out.println("Enter the group of the student");
+				group = sc.nextInt();		
+			} catch (NullPointerException e) {
+				System.out.println("You entered incorrect information. Please try again");
+				
+			}
+			for (Student student : students) {
+				System.out.println(student);
+				
+			}
+			Scanner sc = new Scanner(System.in);
+			int parameter = 0;
+			System.out.println("Input a parameter");
+			parameter = sc.nextInt();
+			
+			if (parameter == 1) {
+				Arrays.sort(students,(a,b) -> (a.getAge() - b.getAge())); // sort by age 
+			}
+
+			if (parameter == 2) {
+				Arrays.sort(students,(a,b) -> (a.getName().compareTo(b.getName())));  // sort by name 
+			}
+			if (parameter == 3) {
+				Arrays.sort(students,(a,b) -> (a.getLastName().compareTo(b.getLastName()))); // sort by the last name 
+			}
+
+			if (parameter == 4) {
+				Arrays.sort(students,(a,b) -> (a.getGroup() - (b.getGroup())));  // sort by group 
+			}
+			for (Student student : students) {
+				System.out.println(student);
+			}
+	
+		}
+		{
+}
+		
+			
+@Override			
+public Student [] armyTime () {
+	Student [] armyTime = new Student [10];
+	
+for (int i = 0; i < armyTime.length; i++) {
+	if (students[i] != null && students[i].getAge() > 18) {
+		Student army = students[i];
+		army = students[i];
+	}
+	
+	}
+return armyTime;
+
+}
 }
