@@ -1,0 +1,5 @@
+package com.gmail.marialyven12;
+
+public interface Millitary {
+	public Student [] armyTime();
+}
