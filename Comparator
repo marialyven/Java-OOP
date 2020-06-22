@@ -1,0 +1,71 @@
+package com.gmail.marialyven12;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Comparator {
+    
+	 public static String loadTextFromFile(File file) {
+
+	  StringBuilder textFromFile = new StringBuilder();
+	  try {
+		  BufferedReader br = new BufferedReader(new FileReader(file));
+          String textBuffer = "";
+          for (; (textBuffer = br.readLine()) != null;) {
+              textFromFile.append(textBuffer);
+              textFromFile.append(" ");
+          }
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	  return textFromFile.toString();
+	    }
+
+	    public static String [] stringToArray(String text){
+	        String [] arrayOfWords = text.split(" ");
+	        return  arrayOfWords;
+	    }
+
+	    public static String compareTwoArrays(String [] firstArray, String [] secondArray){
+
+	        StringBuilder resultString = new StringBuilder();
+	        for (int i =0; i<firstArray.length-1;i++){
+	            for (int j=0; j<secondArray.length-1;j++){
+	                if (firstArray[i].equals(secondArray[j])){
+	                    resultString.append(secondArray[j]+ " ");
+	                }
+	            }
+	        }
+
+	        return resultString.toString();
+	    }
+
+	    public static void saveTextToFile(String text, File file) {
+	        if (text == null) {
+	            throw new IllegalArgumentException("Null text");
+	        }
+	        try (PrintWriter printWriter = new PrintWriter(file)) {
+	            printWriter.println(text);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    public static void loadResult(File fileOne, File fileTwo, File resultFile) {
+	        if (fileOne == null || fileTwo == null || resultFile == null) {
+	            throw new IllegalArgumentException("Null file");
+	        }
+
+	        String textOne = loadTextFromFile(fileOne);
+	        String textTwo = loadTextFromFile(fileTwo);
+	        String resultString = compareTwoArrays(stringToArray(textOne),stringToArray(textTwo));
+	        saveTextToFile(resultString, resultFile);
+	    }
+
+	    {
+
+	 }
+}
