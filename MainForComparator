@@ -1,0 +1,14 @@
+package com.gmail.marialyven12;
+import java.io.File;
+import java.io.IOException;
+
+public class Main {
+
+	public static void main(String[] args) {	 
+		File fileOne = new File("E:\\My doc\\Java\\Text1.txt");
+	    File fileTwo = new File("E:\\My doc\\Java\\Text2.txt");
+	    File resultFile = new File("E:\\My doc\\Java\\Text3.txt");
+	    Comparator.loadResult(fileOne, fileTwo, resultFile);
+	    }
+	}
+
